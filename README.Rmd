@@ -59,7 +59,7 @@ jumanpp_wakati("私には外国人参政権がある。")
 jumanpp_wakati("私には外国人参政権がある。", pattern = "名詞")
 ```
 
-`pattern`引数は IUC 正規表現による指定が可能で、`pattern = "名詞|形容詞"`のように書くこともできます。
+`pattern`引数は ICU 正規表現による指定が可能で、`pattern = "名詞|形容詞"`のように書くこともできます。
 
 # Future Work
 - [ ] 表記ゆれ、代表表記への対応
