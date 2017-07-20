@@ -4,7 +4,7 @@
 ##' @export
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset str_split
-rjumanpp_c <- function (input) {
+jum_c <- function (input) {
   if (!is.character(input)) {
     input <- as.character(input)
   }

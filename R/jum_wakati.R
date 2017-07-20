@@ -5,7 +5,7 @@
 ##' @export
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset str_split str_detect
-rjumanpp_wakati <- function (input, pattern = NULL){
+jum_wakati <- function (input, pattern = NULL){
   if (!is.character(input)) {
     input <- as.character(input)
   }
