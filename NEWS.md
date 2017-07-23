@@ -1,3 +1,7 @@
+# rjumanpp 0.0.0.9991
+
+* add redirect option. When `redirect = TRUE`, forms that appear on the text are replaced with Wikipedia redirect
+
 # rjumanpp 0.0.0.9990
 
 * suffix of functions changed from `rjumanpp` to `jum` .
