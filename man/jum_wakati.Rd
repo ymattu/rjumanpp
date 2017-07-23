@@ -2,14 +2,14 @@
 % Please edit documentation in R/jum_wakati.R
 \name{jum_wakati}
 \alias{jum_wakati}
-\title{jumanpp wakati}
+\title{Wakatigaki by JUMAN++}
 \usage{
-jum_wakati(input, pattern = NULL, redirect = FALSE)
+jum_wakati(input, pos = NULL, redirect = FALSE)
 }
 \arguments{
 \item{input}{input text}
 
-\item{pattern}{extract pattern i.e. "名詞|動詞"}
+\item{pos}{extract pattern i.e. "名詞|動詞"}
 
 \item{redirect}{Whether or not redirect to Wikipedia redirect. Default is FALSE.}
 }
@@ -17,5 +17,5 @@ jum_wakati(input, pattern = NULL, redirect = FALSE)
 wakatigaki of the input text
 }
 \description{
-jumanpp wakati
+This function  make a Japanese sentence with a space between words.
 }

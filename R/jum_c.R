@@ -1,10 +1,13 @@
 ##' Simple Morphological Analysis
+##'
 ##' @param input input text
+##' @param pos extract pattern i.e. "名詞|動詞"
+##' @param redirect Whether or not redirect to Wikipedia redirect. Default is FALSE.
 ##' @return named list of Morphological Analysis
 ##' @export
 ##' @importFrom magrittr %>%
-##' @importFrom stringr str_subset str_split
-jum_c <- function (input) {
+##' @importFrom stringr str_subset str_split str_detect str_replace
+jum_c <- function (input, pos = NULL, redirect = FALSE) {
   if (!is.character(input)) {
     input <- as.character(input)
   }
@@ -14,30 +17,73 @@ jum_c <- function (input) {
 
   command <- paste("echo", input, "| jumanpp --force-single-path")
 
-  # 素の結果を出力
+  # result from JUMAN++
   res <- system(command, intern = T) %>%
     str_subset("^(?!EOS)") # EOSを削除
 
-  # リスト化
+  # make a list
   res_list <- lapply(res, function(x){
     out <- unlist(str_split(x, pattern = " "))
     return(unlist(out))
   })
 
-  # 形態素
-  res_c <- unlist(sapply(res_list, function(x){
-    return(x[1])
-  }))
+  # morph
+  # select class
+    if(is.null(pos) == TRUE) {
+    res_morph <- unlist(sapply(res_list, function(x){
+      # Wikipedia redirect(orthographical variants)
+      if (redirect != TRUE) {
+        return(x[1])
+      } else
+        if (str_detect(x[12], "Wikipedia") == TRUE){
+          redirect_word <- str_replace(x[13], "Wikipediaリダイレクト:", "") %>%
+            str_replace("\\\"", "")
+          return(redirect_word)
+        } else
+        {
+          return(x[1])
+        }
+    }
+    ))
+  } else {
+    res_morph <- unlist(sapply(res_list, function(x){
+      if(str_detect(x[4], pos) == TRUE){
+        # Wikipedia redirect(orthographical variants)
+        if (redirect != TRUE) {
+          return(x[1])
+        } else
+          if (str_detect(x[12], "Wikipedia") == TRUE){
+            redirect_word <- str_replace(x[13], "Wikipediaリダイレクト:", "") %>%
+              str_replace("\\\"", "")
+            return(redirect_word)
+          } else
+          {
+            return(x[1])
+          }
+      }
+    }))
+  }
 
-  # 品詞
+
+  # class
   res_names <- unlist(sapply(res_list, function(x){
-    return(x[4])
+    if(is.null(pos) == TRUE) {
+      res_names <- unlist(sapply(res_list, function(x){
+        return(x[4])
+      }))
+  } else {
+    res_names <- unlist(sapply(res_list, function(x){
+      if(str_detect(x[4], pos) == TRUE){
+        return(x[4])
+      }
+    }))
+  }
   }))
 
-  # 出力
+  # output
   res_c_list <- list()
-  for (i in 1:length(res)) {
-    res_c_list[[i]] <- res_c[i]
+  for (i in 1:length(res_morph)) {
+    res_c_list[[i]] <- res_morph[i]
     names(res_c_list[[i]]) <- res_names[i]
   }
 

@@ -1,11 +1,17 @@
-##' jumanpp wakati
+##' Wakatigaki by JUMAN++
+##'
+##' @description
+##' This function  make a Japanese sentence with a space between words.
+##'
 ##' @param input input text
-##' @param pattern extract pattern i.e. "名詞|動詞"
+##' @param pos extract pattern i.e. "名詞|動詞"
 ##' @param redirect Whether or not redirect to Wikipedia redirect. Default is FALSE.
 ##' @return wakatigaki of the input text
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset str_split str_detect str_replace
-jum_wakati <- function (input, pattern = NULL, redirect = FALSE){
+##'
+##' @export
+jum_wakati <- function (input, pos = NULL, redirect = FALSE){
   if (!is.character(input)) {
     input <- as.character(input)
   }
@@ -15,20 +21,20 @@ jum_wakati <- function (input, pattern = NULL, redirect = FALSE){
 
   command <- paste("echo", input, "| jumanpp --force-single-path")
 
-  # 素の結果を出力
+  # result from JUMAN++
   res <- system(command, intern = T) %>%
     str_subset("^(?!EOS)") # EOSを削除
 
-  # リスト化
+  # make a list
   res_list <- lapply(res, function(x){
     out <- unlist(str_split(x, pattern = " "))
     return(unlist(out))
   })
 
-  # 品詞の指定があれば、指定したものだけを出力
-  if(is.null(pattern) == TRUE) {
+  # select class
+  if(is.null(pos) == TRUE) {
     res_morph <- unlist(sapply(res_list, function(x){
-      # 表記ゆれ(Wikipediaリダイレクトに対応)
+      # Wikipedia redirect(orthographical variants)
       if (redirect != TRUE) {
         return(x[1])
       } else
@@ -44,8 +50,8 @@ jum_wakati <- function (input, pattern = NULL, redirect = FALSE){
     ))
   } else {
     res_morph <- unlist(sapply(res_list, function(x){
-      if(str_detect(x[4], pattern) == TRUE){
-        # 表記ゆれ(Wikipediaリダイレクトに対応)
+      if(str_detect(x[4], pos) == TRUE){
+        # Wikipedia redirect(orthographical variants)
         if (redirect != TRUE) {
           return(x[1])
         } else
