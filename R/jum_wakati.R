@@ -19,55 +19,10 @@ jum_wakati <- function (input, pos = NULL, redirect = FALSE){
     stop("first argument must be specified")
   }
 
-  command <- paste("echo", input, "| jumanpp --force-single-path")
+  res <- jum_c(input = input, pos = pos, redirect = redirect)
 
-  # result from JUMAN++
-  res <- system(command, intern = T) %>%
-    str_subset("^(?!EOS)") # EOSを削除
-
-  # make a list
-  res_list <- lapply(res, function(x){
-    out <- unlist(str_split(x, pattern = " "))
-    return(unlist(out))
-  })
-
-  # select class
-  if(is.null(pos) == TRUE) {
-    res_morph <- unlist(sapply(res_list, function(x){
-      # Wikipedia redirect(orthographical variants)
-      if (redirect != TRUE) {
-        return(x[1])
-      } else
-        if (str_detect(x[12], "Wikipedia") == TRUE){
-          redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
-            str_replace("\\\"", "")
-          return(redirect_word)
-        } else
-        {
-          return(x[1])
-        }
-    }
-    ))
-  } else {
-    res_morph <- unlist(sapply(res_list, function(x){
-      if(str_detect(x[4], pos) == TRUE){
-        # Wikipedia redirect(orthographical variants)
-        if (redirect != TRUE) {
-          return(x[1])
-        } else
-          if (str_detect(x[12], "Wikipedia") == TRUE){
-            redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
-              str_replace("\\\"", "")
-            return(redirect_word)
-          } else
-          {
-            return(x[1])
-          }
-      }
-    }))
-  }
-
-  wakati <- paste(res_morph, collapse = " ")
+  res_word <- sapply(res, function(x){return(x[[1]])})
+  wakati <- paste(res_word, collapse = " ")
 
   return(wakati)
 
