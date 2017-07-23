@@ -1,11 +1,17 @@
-##' jumanpp wakatigaki
+##' Wakatigaki by JUMAN++
+##'
+##' @description
+##' This function  make a Japanese sentence with a space between words.
+##'
 ##' @param input input text
-##' @param pattern extract pattern i.e. "名詞|動詞"
-##' @return seperated words of the input text
-##' @export
+##' @param pos extract pattern i.e. "名詞|動詞"
+##' @param redirect Whether or not redirect to Wikipedia redirect. Default is FALSE.
+##' @return wakatigaki of the input text
 ##' @importFrom magrittr %>%
-##' @importFrom stringr str_subset str_split str_detect
-jum_wakati <- function (input, pattern = NULL){
+##' @importFrom stringr str_subset str_split str_detect str_replace
+##'
+##' @export
+jum_wakati <- function (input, pos = NULL, redirect = FALSE){
   if (!is.character(input)) {
     input <- as.character(input)
   }
@@ -15,23 +21,48 @@ jum_wakati <- function (input, pattern = NULL){
 
   command <- paste("echo", input, "| jumanpp --force-single-path")
 
-  # 素の結果を出力
+  # result from JUMAN++
   res <- system(command, intern = T) %>%
     str_subset("^(?!EOS)") # EOSを削除
 
-  # リスト化
+  # make a list
   res_list <- lapply(res, function(x){
     out <- unlist(str_split(x, pattern = " "))
     return(unlist(out))
   })
 
-  # 品詞の指定があれば、指定したものだけを出力
-  if(is.null(pattern) == TRUE) {
-    res_morph <- unlist(sapply(res_list, function(x){return(x[1])}))
+  # select class
+  if(is.null(pos) == TRUE) {
+    res_morph <- unlist(sapply(res_list, function(x){
+      # Wikipedia redirect(orthographical variants)
+      if (redirect != TRUE) {
+        return(x[1])
+      } else
+        if (str_detect(x[12], "Wikipedia") == TRUE){
+          redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
+            str_replace("\\\"", "")
+          return(redirect_word)
+        } else
+        {
+          return(x[1])
+        }
+    }
+    ))
   } else {
     res_morph <- unlist(sapply(res_list, function(x){
-      if(str_detect(x[4], pattern) == TRUE){
-        return(x[1])
+      if(str_detect(x[4], pos) == TRUE){
+        # Wikipedia redirect(orthographical variants)
+        if (redirect != TRUE) {
+          return(x[1])
+        } else
+          if (str_detect(x[12], "Wikipedia") == TRUE){
+            redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
+              str_replace("\\\"", "")
+            return(redirect_word)
+          } else
+          {
+            return(x[1])
+          }
       }
     }))
   }
