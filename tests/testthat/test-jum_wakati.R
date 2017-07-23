@@ -16,7 +16,6 @@ test_that("wakatigaki redirect", {
   res <- jum_wakati("私はミルクティを飲みます", redirect = TRUE)
   wakati <- "私 は ミルクティー を 飲み ます"
 
-
   res2 <- jum_wakati("私はミルクティを飲みます", pos = "名詞", redirect = TRUE)
   wakati2 <- "私 ミルクティー"
 
