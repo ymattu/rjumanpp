@@ -2,18 +2,20 @@
 % Please edit documentation in R/jum_wakati.R
 \name{jum_wakati}
 \alias{jum_wakati}
-\title{jumanpp wakatigaki}
+\title{jumanpp wakati}
 \usage{
-jum_wakati(input, pattern = NULL)
+jum_wakati(input, pattern = NULL, redirect = FALSE)
 }
 \arguments{
 \item{input}{input text}
 
 \item{pattern}{extract pattern i.e. "名詞|動詞"}
+
+\item{redirect}{Whether or not redirect to Wikipedia redirect. Default is FALSE.}
 }
 \value{
-seperated words of the input text
+wakatigaki of the input text
 }
 \description{
-jumanpp wakatigaki
+jumanpp wakati
 }
