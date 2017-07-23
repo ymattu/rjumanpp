@@ -8,24 +8,7 @@
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset str_split str_detect str_replace
 jum_c <- function (input, pos = NULL, redirect = FALSE) {
-  if (!is.character(input)) {
-    input <- as.character(input)
-  }
-  if (nchar(input) < 1) {
-    stop("first argument must be specified")
-  }
-
-  command <- paste("echo", input, "| jumanpp --force-single-path")
-
-  # result from JUMAN++
-  res <- system(command, intern = T) %>%
-    str_subset("^(?!EOS)") # EOSを削除
-
-  # make a list
-  res_list <- lapply(res, function(x){
-    out <- unlist(str_split(x, pattern = " "))
-    return(unlist(out))
-  })
+  res_list <- jum_text(input = input)
 
   # morph
   # select class
