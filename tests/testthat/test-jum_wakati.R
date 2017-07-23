@@ -21,6 +21,7 @@ test_that("wakatigaki redirect", {
   wakati2 <- "私 ミルクティー"
 
   expect_equal(res, wakati)
+  expect_equal(res2, wakati2)
 })
 
 
