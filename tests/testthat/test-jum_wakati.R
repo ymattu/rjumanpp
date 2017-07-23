@@ -1,4 +1,4 @@
-context("simple wakatigaki")
+context("Simple Wakatigaki")
 
 test_that("wakatigaki", {
   res <- jum_wakati("私はミルクティを飲みます")
