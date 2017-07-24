@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.org/ymattu/rjumanpp.svg?branch=master)](https://travis-ci.org/ymattu/rjumanpp)
-
 R binding for JUMAN++
 =====================
+
+[![Build Status](https://travis-ci.org/ymattu/rjumanpp.svg?branch=master)](https://travis-ci.org/ymattu/rjumanpp)
 
 This package is made for mainly Japanese.
 
