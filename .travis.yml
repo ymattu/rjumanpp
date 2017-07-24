@@ -8,7 +8,7 @@ cran: https://cran.rstudio.com/
 addons:
   apt:
     packages:
-    - libboost-dev
+    - libboost-all-dev
     - build-essential
 before_install:
   - chmod +x ./install_jumanpp.sh
