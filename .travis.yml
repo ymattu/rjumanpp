@@ -15,7 +15,4 @@ before_install:
   - chmod +x ./install_jumanpp.sh
 install:
    - ./install_jumanpp.sh
-r_packages:
-  - magrittr
-  - stringr
-  - testthat
+cran: https://cran.rstudio.com/
