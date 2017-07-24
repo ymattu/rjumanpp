@@ -9,9 +9,7 @@ addons:
   apt:
     packages:
     - gcc
-    - gpreftool
     - build-essential
-    - libunwind
 before_install:
   - chmod +x ./install_jumanpp.sh
   - sudo apt-get install r-cran-magrittr r-cran-stringr r-cran-testthat
