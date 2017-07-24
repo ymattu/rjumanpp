@@ -11,4 +11,4 @@ addons:
     - google-perftools
     - libgoogle-perftools-dev
 install:
-   - ./install-jumanpp.sh
+   - ./install_jumanpp.sh
