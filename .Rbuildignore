@@ -3,3 +3,5 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^\.travis\.yml$
+^.*\.sh$
+/jumanpp-1.02/
