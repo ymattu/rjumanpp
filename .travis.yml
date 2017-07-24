@@ -13,6 +13,9 @@ addons:
     - libgoogle-perftools-dev
 before_install:
   - chmod +x ./install_jumanpp.sh
-  - Rscript -e 'install.packages(c("magrittr", "stringr", "testthat"))'
 install:
    - ./install_jumanpp.sh
+r_packages:
+  - magrittr
+  - stringr
+  - testthat
