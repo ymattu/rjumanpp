@@ -10,5 +10,7 @@ addons:
     - libboost-dev
     - google-perftools
     - libgoogle-perftools-dev
+before_install:
+  - chmod +x ./install_jumanpp.sh
 install:
    - ./install_jumanpp.sh
