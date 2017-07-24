@@ -12,6 +12,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+[![Build Status](https://travis-ci.org/ymattu/rjumanpp.svg?branch=master)](https://travis-ci.org/ymattu/rjumanpp)
+
 # R binding for JUMAN++
 This package is made for mainly Japanese.
 
