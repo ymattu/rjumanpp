@@ -4,16 +4,14 @@ language: R
 sudo: required
 cache: packages
 dist: trusty
+cran: https://cran.rstudio.com/
 addons:
   apt:
     packages:
-    - gcc
     - libboost-dev
-    - google-perftools
-    - libgoogle-perftools-dev
+    - build-essential
 before_install:
   - chmod +x ./install_jumanpp.sh
   - sudo apt-get install r-cran-magrittr r-cran-stringr r-cran-testthat
 install:
    - ./install_jumanpp.sh
-cran: https://cran.rstudio.com/
