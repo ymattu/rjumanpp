@@ -6,4 +6,6 @@ cd jumanpp-1.02
 ./configure
 make
 sudo make install
+sudo rm jumanpp-1.02.tar.xz
+sudo rm -r jumanpp-1.02
 cd ~
