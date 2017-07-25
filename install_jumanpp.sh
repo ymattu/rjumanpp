@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 # boost 1.57
 cd ~
 mkdir Downloads
 cd Downloads
 curl http://heanet.dl.sourceforge.net/project/boost/boost/1.57.0/boost_1_57_0.tar.bz2 -O
-tar xvfj boost_1_57_0.tar.bz2
+tar jxvf boost_1_57_0.tar.bz2
 pushd boost_1_57_0
 ./bootstrap.sh
 sudo ./b2 install -j 2 --prefix=/usr link=static
