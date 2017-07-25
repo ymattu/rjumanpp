@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# boost 1.57
-cd ~
-mkdir Downloads
-cd Downloads
-curl http://heanet.dl.sourceforge.net/project/boost/boost/1.64.0/boost_1_64_0.tar.bz2 -O
-tar xjvf boost_1_64_0.tar.bz2
-pushd boost_1_57_0
-./bootstrap.sh
-sudo ./b2 install -j 2 --prefix=/usr link=static
-popd
-
 # JUMAN++
 cd Downloads
 wget http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-1.02.tar.xz
