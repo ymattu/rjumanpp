@@ -7,12 +7,8 @@ dist: trusty
 cran: https://cran.rstudio.com/
 before_install:
   - chmod +x ./install_jumanpp.sh
-  - sudo add-apt-repository ppa:apokluda/boost1.57 --yes
   - sudo apt-get update
   - sudo apt-get install r-cran-magrittr r-cran-stringr r-cran-testthat
 install:
-  - sudo apt-get install libboost-system1.57-dev
-  - sudo apt-get install libboost-regex1.57-dev
-  - sudo apt-get install libboost-filesystem1.57-dev
   - sudo apt-get install gcc google-perftools libgoogle-perftools-dev
   - ./install_jumanpp.sh
