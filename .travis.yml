@@ -9,6 +9,6 @@ before_install:
   - chmod +x ./install_jumanpp.sh
   - sudo apt-get update
   - sudo apt-get install r-cran-magrittr r-cran-stringr r-cran-testthat
-  - sudo apt-get install libboost-all-dev gcc google-perftools libgoogle-perftools-dev
+  - sudo apt-get install gcc-4.9 google-perftools libgoogle-perftools-dev
 install:
   - ./install_jumanpp.sh
