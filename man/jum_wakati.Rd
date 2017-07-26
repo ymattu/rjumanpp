@@ -4,7 +4,7 @@
 \alias{jum_wakati}
 \title{Wakatigaki by JUMAN++}
 \usage{
-jum_wakati(input, pos = NULL, redirect = FALSE)
+jum_wakati(input, pos = NULL, redirect = FALSE, mypref = 0)
 }
 \arguments{
 \item{input}{input text}
@@ -12,6 +12,8 @@ jum_wakati(input, pos = NULL, redirect = FALSE)
 \item{pos}{extract pattern i.e. "名詞|動詞"}
 
 \item{redirect}{Whether or not redirect to Wikipedia redirect. Default is FALSE.}
+
+\item{mypref}{Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.}
 }
 \value{
 wakatigaki of the input text

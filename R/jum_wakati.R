@@ -6,6 +6,7 @@
 ##' @param input input text
 ##' @param pos extract pattern i.e. "名詞|動詞"
 ##' @param redirect Whether or not redirect to Wikipedia redirect. Default is FALSE.
+##' @param mypref Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.
 ##' @return wakatigaki of the input text
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset str_split str_detect str_replace
