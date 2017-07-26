@@ -8,17 +8,17 @@ tar xjf ./boost_1_57_0.tar.bz2
 cd boost_1_57_0
 ./bootstrap.sh --prefix=/opt/boost_1_57_0
 sudo ./b2
-sudo ./b2 install
+sudo ./b2 install -j2
 
 # JUMAN++
-cd Downloads
+mkdir Downloads
 wget http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-1.01.tar.xz
 tar xJvf jumanpp-1.01.tar.xz
 cd jumanpp-1.01
-./configure --with-boost=~/boost
+./configure --with-boost=/opt/boost_1_57_0
 make
 sudo make install
-cd .
+cd ..
 sudo rm jumanpp-1.01.tar.xz
 sudo rm -r jumanpp-1.01
 cd ~
