@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Boost 1.57
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt-get update -qq
 sudo apt-get install g++-4.9
 sudo apt-get update -qq
