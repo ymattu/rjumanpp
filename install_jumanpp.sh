@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # Boost 1.57
-sudo apt-get install build-essential g++-4.9 python-dev autotools-dev libicu-dev build-essential libbz2-dev
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update -qq
+sudo apt-get install g++-4.9
+sudo apt-get update -qq
+sudo apt-get install build-essential python-dev autotools-dev libicu-dev build-essential libbz2-dev
 sudo apt-get install gcc-4.9 google-perftools libgoogle-perftools-dev
 wget http://downloads.sourceforge.net/project/boost/boost/1.57.0/boost_1_57_0.tar.bz2
 tar xjf ./boost_1_57_0.tar.bz2
