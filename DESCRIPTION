@@ -3,7 +3,7 @@ Title: R binding forJUMAN++
 Version: 0.0.0.9991
 Authors@R: person("Yuya", "Matsumura", email = "mattu.yuya@gmail.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-Depends: R (>= 3.4.1)
+Depends: R (>= 3.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
