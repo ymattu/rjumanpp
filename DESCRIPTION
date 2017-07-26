@@ -1,8 +1,8 @@
 Package: rjumanpp
-Title: R binding forJUMAN++
-Version: 0.0.0.9991
+Title: R interface for JUMAN++
+Version: 0.0.0.9992
 Authors@R: person("Yuya", "Matsumura", email = "mattu.yuya@gmail.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: parsing Japanese texts with JUMAN++
 Depends: R (>= 3.3)
 License: MIT + file LICENSE
 Encoding: UTF-8

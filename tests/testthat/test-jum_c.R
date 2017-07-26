@@ -34,3 +34,15 @@ test_that("wakatigaki rediect", {
   expect_equal(names(res2[[2]]), morph)
 })
 
+test_that("wakatigaki mypref", {
+  res <- jum_c("私はミルクティを飲みます", redirect = TRUE)
+  res2 <- jum_c("私はミルクティを飲みます", pos = "動詞", mypref = 1)
+
+  hyousou <- "飲み"
+  genkei <- "飲む"
+
+  expect_equal(length(res), 6)
+  expect_equal(res[[5]][[1]], hyousou)
+  expect_equal(length(res2), 1)
+  expect_equal(res2[[1]][[1]], genkei)
+})

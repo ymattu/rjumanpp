@@ -7,8 +7,16 @@
 ##' @export
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset str_split str_detect str_replace
-jum_c <- function (input, pos = NULL, redirect = FALSE) {
+jum_c <- function (input, pos = NULL, redirect = FALSE, mypref = 0) {
   res_list <- jum_text(input = input)
+
+  if (!(mypref %in% c(0, 1))) {
+    stop("Please specify 0 or 1 in A")
+  } else if (mypref == 0) {
+    app <- 1
+  } else {
+    app <- 3
+  }
 
   # morph
   # select class
@@ -16,17 +24,17 @@ jum_c <- function (input, pos = NULL, redirect = FALSE) {
     res_morph <- unlist(sapply(res_list, function(x){
       # Wikipedia redirect(orthographical variants)
       if (redirect != TRUE) {
-        return(x[1])
+        return(x[app])
       } else
         if (is.na(str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8"))) {
-          return(x[1])
+          return(x[app])
         } else if (str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8") == TRUE ){
           redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
             str_replace("\\\"", "")
           return(redirect_word)
         } else
         {
-          return(x[1])
+          return(x[app])
         }
     }
     ))
@@ -35,17 +43,17 @@ jum_c <- function (input, pos = NULL, redirect = FALSE) {
       if(str_detect(x[4], pos) == TRUE){
         # Wikipedia redirect(orthographical variants)
         if (redirect != TRUE) {
-          return(x[1])
+          return(x[app])
         } else
           if (is.na(str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8"))) {
-            return(x[1])
+            return(x[app])
           } else if (str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8") == TRUE ){
             redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
               str_replace("\\\"", "")
             return(redirect_word)
           } else
           {
-            return(x[1])
+            return(x[app])
           }
       }
     }))

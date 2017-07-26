@@ -11,7 +11,7 @@
 ##' @importFrom stringr str_subset str_split str_detect str_replace
 ##'
 ##' @export
-jum_wakati <- function (input, pos = NULL, redirect = FALSE){
+jum_wakati <- function (input, pos = NULL, redirect = FALSE, mypref = 0){
   if (!is.character(input)) {
     input <- as.character(input)
   }
@@ -19,7 +19,7 @@ jum_wakati <- function (input, pos = NULL, redirect = FALSE){
     stop("first argument must be specified")
   }
 
-  res <- jum_c(input = input, pos = pos, redirect = redirect)
+  res <- jum_c(input = input, pos = pos, redirect = redirect, mypref = mypref)
 
   res_word <- sapply(res, function(x){return(x[[1]])})
   wakati <- paste(res_word, collapse = " ")
