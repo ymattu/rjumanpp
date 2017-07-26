@@ -1,3 +1,7 @@
+# rjumanpp 0.0.0.9992
+
+* add mypref option. Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.
+
 # rjumanpp 0.0.0.9991
 
 * add redirect option. When `redirect = TRUE`, forms that appear on the text are replaced with Wikipedia redirect

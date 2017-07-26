@@ -6,12 +6,13 @@
 ##' @param input input text
 ##' @param pos extract pattern i.e. "名詞|動詞"
 ##' @param redirect Whether or not redirect to Wikipedia redirect. Default is FALSE.
+##' @param mypref Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.
 ##' @return wakatigaki of the input text
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset str_split str_detect str_replace
 ##'
 ##' @export
-jum_wakati <- function (input, pos = NULL, redirect = FALSE){
+jum_wakati <- function (input, pos = NULL, redirect = FALSE, mypref = 0){
   if (!is.character(input)) {
     input <- as.character(input)
   }
@@ -19,7 +20,7 @@ jum_wakati <- function (input, pos = NULL, redirect = FALSE){
     stop("first argument must be specified")
   }
 
-  res <- jum_c(input = input, pos = pos, redirect = redirect)
+  res <- jum_c(input = input, pos = pos, redirect = redirect, mypref = mypref)
 
   res_word <- sapply(res, function(x){return(x[[1]])})
   wakati <- paste(res_word, collapse = " ")
