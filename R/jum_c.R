@@ -18,7 +18,9 @@ jum_c <- function (input, pos = NULL, redirect = FALSE) {
       if (redirect != TRUE) {
         return(x[1])
       } else
-        if (str_detect(x[12], "Wikipedia") == TRUE){
+        if (is.na(str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8"))) {
+          return(x[1])
+        } else if (str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8") == TRUE ){
           redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
             str_replace("\\\"", "")
           return(redirect_word)
@@ -35,7 +37,9 @@ jum_c <- function (input, pos = NULL, redirect = FALSE) {
         if (redirect != TRUE) {
           return(x[1])
         } else
-          if (str_detect(x[12], "Wikipedia") == TRUE){
+          if (is.na(str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8"))) {
+            return(x[1])
+          } else if (str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8") == TRUE ){
             redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
               str_replace("\\\"", "")
             return(redirect_word)
