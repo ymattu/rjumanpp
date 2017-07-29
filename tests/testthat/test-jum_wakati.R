@@ -23,4 +23,9 @@ test_that("wakatigaki redirect", {
   expect_equal(res2, wakati2)
 })
 
+test_that("wakatigaki mypref", {
+  res <- jum_wakati("私はミルクティを飲みます", 1, redirect = TRUE)
+  wakati <- "私 は ミルクティー を 飲む ます"
 
+  expect_equal(res, wakati)
+})

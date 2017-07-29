@@ -4,16 +4,16 @@
 \alias{jum_c}
 \title{Simple Morphological Analysis}
 \usage{
-jum_c(input, pos = NULL, redirect = FALSE, mypref = 0)
+jum_c(input, mypref = 0, pos = NULL, redirect = FALSE)
 }
 \arguments{
 \item{input}{input text}
 
+\item{mypref}{Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.}
+
 \item{pos}{extract pattern i.e. "名詞|動詞"}
 
 \item{redirect}{Whether or not redirect to Wikipedia redirect. Default is FALSE.}
-
-\item{mypref}{Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.}
 }
 \value{
 named list of Morphological Analysis
