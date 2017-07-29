@@ -8,11 +8,11 @@
 ##' @export
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset str_split str_detect str_replace
-jum_c <- function (input, pos = NULL, redirect = FALSE, mypref = 0) {
+jum_c <- function (input, mypref = 0, pos = NULL, redirect = FALSE) {
   res_list <- jum_text(input = input)
 
   if (!(mypref %in% c(0, 1))) {
-    stop("Please specify 0 or 1 in A")
+    stop("Please specify 0 or 1 in mypref")
   } else if (mypref == 0) {
     app <- 1
   } else {
