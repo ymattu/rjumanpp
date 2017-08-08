@@ -44,7 +44,9 @@ jum_text <- function (input) {
     stop("first argument must be specified")
   }
 
-  command <- paste("echo", input, "| jumanpp --force-single-path")
+  # command <- paste("echo", input, "| jumanpp --force-single-path")
+  # command <- paste("echo", input, "| ruby /Users/matsumura/Downloads/jumanpp-1.02/script/client.rb")
+  command <- paste("echo", input, "| ruby /Users/matsumura/Downloads/jumanpp-1.02/script/client.rb")
 
   # result from JUMAN++
   res <- system(command, intern = T) %>%
