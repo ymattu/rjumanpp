@@ -1,3 +1,6 @@
+# rjumanpp 0.0.0.9993
+* add server mode option to `jum_c`, `jum_wakati`, `jum_text`, and `jum_file`. When use `server = TRUE`, please start server, such as `hd <- jum_start_server`.
+
 # rjumanpp 0.0.0.9992
 
 * add mypref option. Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.

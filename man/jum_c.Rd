@@ -4,7 +4,7 @@
 \alias{jum_c}
 \title{Simple Morphological Analysis}
 \usage{
-jum_c(input, mypref = 0, pos = NULL, redirect = FALSE)
+jum_c(input, mypref = 0, pos = NULL, redirect = FALSE, server = FALSE)
 }
 \arguments{
 \item{input}{input text}
@@ -14,6 +14,8 @@ jum_c(input, mypref = 0, pos = NULL, redirect = FALSE)
 \item{pos}{extract pattern i.e. "名詞|動詞"}
 
 \item{redirect}{Whether or not redirect to Wikipedia redirect. Default is FALSE.}
+
+\item{server}{if TRUE, JUMAN++ server is used. In such a case, you have to \command{jum_start_server} to start JUMAN++ server.}
 }
 \value{
 named list of Morphological Analysis
