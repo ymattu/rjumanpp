@@ -4,12 +4,17 @@
 ##' @param pos extract pattern i.e. "名詞|動詞"
 ##' @param redirect Whether or not redirect to Wikipedia redirect. Default is FALSE.
 ##' @param mypref Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.
+##' @param server if TRUE, JUMAN++ server is used. In such a case, you have to \command{jum_start_server} to start JUMAN++ server.
 ##' @return named list of Morphological Analysis
 ##' @export
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset str_split str_detect str_replace
-jum_c <- function (input, mypref = 0, pos = NULL, redirect = FALSE) {
-  res_list <- jum_text(input = input)
+jum_c <- function (input,
+                   mypref = 0,
+                   pos = NULL,
+                   redirect = FALSE,
+                   server = FALSE) {
+  res_list <- jum_text(input = input, server = server)
 
   if (!(mypref %in% c(0, 1))) {
     stop("Please specify 0 or 1 in mypref")

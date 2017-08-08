@@ -10,7 +10,25 @@ jum_start_server <- function(host.name = NULL, port = NULL) {
   }
 
   rb_file <- system.file("inst/server.rb", package = "rjumanpp")
-  command <- paste("ruby", rb_file, "--cmd", "'jumanpp --force-single-path'")
-  return(command)
+  cmd <- "--cmd"
+  jum <- shQuote("jumanpp --force-single-path")
+
+  pfile <- pipe_files()
+
+  outres <- unix_spawn_tofile(rubypath, args = c(rb_file, cmd, jum),
+                           pfile[["out"]], pfile[["err"]])
+  if(!is.na(subprocess::process_return_code(outres))){
+    stop("JUMAN++ server couldn't be started",
+         subprocess::process_read(outres, "stderr"))
+  }
+  return(outres)
 }
 
+##' Close JUMAN++ server.
+##'
+##' @param handle Process handle obtained from \code{jum_start_server()}
+##' @importFrom subprocess process_kill
+##' @export
+jum_close_server <- function(handle) {
+  process_kill(handle)
+}

@@ -4,7 +4,8 @@
 \alias{jum_wakati}
 \title{Wakatigaki by JUMAN++}
 \usage{
-jum_wakati(input, mypref = 0, pos = NULL, redirect = FALSE)
+jum_wakati(input, mypref = 0, pos = NULL, redirect = FALSE,
+  server = FALSE)
 }
 \arguments{
 \item{input}{input text}
@@ -14,6 +15,8 @@ jum_wakati(input, mypref = 0, pos = NULL, redirect = FALSE)
 \item{pos}{extract pattern i.e. "名詞|動詞"}
 
 \item{redirect}{Whether or not redirect to Wikipedia redirect. Default is FALSE.}
+
+\item{server}{if TRUE, JUMAN++ server is used. In such a case, you have to \command{jum_start_server} to start JUMAN++ server.}
 }
 \value{
 wakatigaki of the input text
