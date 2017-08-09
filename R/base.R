@@ -55,7 +55,7 @@ jum_text <- function (input, server = FALSE) {
   # input command
   if(server == TRUE) {
     rb_client <- system.file("ruby/client.rb", package = "rjumanpp")
-    command <- paste("echo", input, "| ruby", rb_client, "&> /dev/null")
+    command <- paste("echo", input, "| ruby", rb_client)
   } else {
     command <- paste("echo", input, "| jumanpp --force-single-path")
   }
