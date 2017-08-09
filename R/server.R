@@ -9,7 +9,7 @@ jum_start_server <- function(host.name = NULL, port = NULL) {
     stop("PATH to Ruby not found. Please check Ruby is installed.")
   }
 
-  rb_file <- system.file("inst/server.rb", package = "rjumanpp")
+  rb_file <- system.file("ruby/server.rb", package = "rjumanpp")
   cmd <- "--cmd"
   jum <- shQuote("jumanpp --force-single-path")
 

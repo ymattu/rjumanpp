@@ -16,7 +16,7 @@ jum_file <- function (filename, server = FALSE) {
 
   # input command
   if(server == TRUE) {
-    rb_client <- system.file("inst/client.rb", package = "rjumanpp")
+    rb_client <- system.file("ruby/client.rb", package = "rjumanpp")
     command <- paste("cat", filename, "| ruby", rb_client)
   } else {
     command <- paste("cat", filename, "| jumanpp --force-single-path")
