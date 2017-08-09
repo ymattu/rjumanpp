@@ -4,10 +4,7 @@
 \alias{jum_close_server}
 \title{Close JUMAN++ server.}
 \usage{
-jum_close_server(handle)
-}
-\arguments{
-\item{handle}{Process handle obtained from \code{jum_start_server()}}
+jum_close_server()
 }
 \description{
 Close JUMAN++ server.

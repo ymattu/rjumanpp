@@ -9,7 +9,7 @@ jum_start_server(host.name = NULL, port = NULL)
 \arguments{
 \item{host.name}{host name if necessary}
 
-\item{port}{port number if necessary. Default is 12000}
+\item{port}{port number if necessary. By default, 12000}
 }
 \description{
 Start JUMAN++ server.
