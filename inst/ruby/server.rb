@@ -1,4 +1,3 @@
-#!/home/morita/.rbenv/shims/ruby -Ku
 #coding: utf-8
 
 require "socket"
