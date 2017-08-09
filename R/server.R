@@ -45,7 +45,7 @@ jum_close_server <- function() {
   pid <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $2}'",
                 intern = TRUE)
 
-  if(length(pid == 0)) {
+  if(length(pid) == 0) {
     stop("JUMAN++ server is not active.")
   }
 

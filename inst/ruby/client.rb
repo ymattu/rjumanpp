@@ -38,7 +38,7 @@ while line = STDIN.gets
   s.write(line)
   while true
     f = s.gets
-    puts f
+    # puts f
     break if f.to_s == "EOS\n"
   end
 end
