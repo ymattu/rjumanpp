@@ -33,7 +33,8 @@ jum_start_server <- function(host.name = NULL, port = NULL) {
                           jum,
                           host,
                           port_num,
-                          "&")
+                          "&",
+                          "> /dev/null 2>&1")
   system(server_command)
 
 }
