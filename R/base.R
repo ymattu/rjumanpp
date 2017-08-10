@@ -5,6 +5,7 @@
 ##' @return result of JUMAN++
 ##' @export
 ##' @importFrom magrittr %>%
+##' @importFrom stringr str_subset
 jum_file <- function (filename, server = FALSE) {
 
   if (!file.exists(filename)) {
@@ -16,6 +17,12 @@ jum_file <- function (filename, server = FALSE) {
 
   # input command
   if(server == TRUE) {
+    pid <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $2}'",
+                   intern = TRUE)
+    if(length(pid) == 0) {
+      stop("JUMAN++ server is not running.")
+    }
+
     rb_client <- system.file("ruby/client.rb", package = "rjumanpp")
 
     hostn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $15}'",
@@ -72,6 +79,12 @@ jum_text <- function (input, server = FALSE) {
 
   # input command
   if(server == TRUE) {
+    pid <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $2}'",
+                  intern = TRUE)
+    if(length(pid) == 0) {
+      stop("JUMAN++ server is not running.")
+    }
+
     rb_client <- system.file("ruby/client.rb", package = "rjumanpp")
 
     hostn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $15}'",
