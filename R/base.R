@@ -61,6 +61,7 @@ jum_file <- function (filename, server = FALSE) {
 ##' @return result of JUMAN++
 ##' @export
 ##' @importFrom magrittr %>%
+##' @importFrom stringr str_subset
 jum_text <- function (input, server = FALSE) {
   if (!is.character(input)) {
     input <- as.character(input)
@@ -82,11 +83,11 @@ jum_text <- function (input, server = FALSE) {
     }
 
     portn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $18}'",
-                  intern = TRUE)
+                    intern = TRUE)
     if(identical(portn, "")) {
       port <- ""
     } else {
-      port <- paste("--host", hostn)
+      port <- paste("--host", portn)
     }
 
     command <- paste("echo", input, "| ruby", rb_client, host, port)
