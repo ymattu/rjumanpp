@@ -1,5 +1,5 @@
 # rjumanpp 0.0.0.9993
-* add server mode option to `jum_c`, `jum_wakati`, `jum_text`, and `jum_file`. When use `server = TRUE`, please start server, such as `hd <- jum_start_server`.
+* add server mode option to `jum_c()`, `jum_wakati()`, `jum_text()`, and `jum_file()`. When use `server = TRUE`, please start server using `jum_start_server()`.
 
 # rjumanpp 0.0.0.9992
 
