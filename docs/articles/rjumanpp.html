@@ -199,24 +199,16 @@ devtools::<span class="kw">install_github</span>(<span class="st">"ymattu/rjuman
 </div>
 <div class="section level4">
 <h4>データフレームの場合</h4>
-<p>実際にデータ解析をする場合、データフレームの特定の列に対して形態素解析をしたいことがしばしばあります。そのような時は、 <code><a href="http://www.rdocumentation.org/packages/dplyr/topics/rowwise">dplyr::rowwise()</a></code> 関数で1行ごとに区切って <code><a href="../reference/jum_wakati.html">jum_wakati()</a></code> 関数に渡します。</p>
+<p>実際にデータ解析をする場合、データフレームの特定の列に対して形態素解析をしたいことがしばしばあります。そのような時は、 <code><a href="http://dplyr.tidyverse.org/reference/rowwise.html">dplyr::rowwise()</a></code> 関数で1行ごとに区切って <code><a href="../reference/jum_wakati.html">jum_wakati()</a></code> 関数に渡します。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-<span class="co">#&gt; </span>
-<span class="co">#&gt;  次のパッケージを付け加えます: 'dplyr'</span>
-<span class="co">#&gt;  以下のオブジェクトは 'package:stats' からマスクされています: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;      filter, lag</span>
-<span class="co">#&gt;  以下のオブジェクトは 'package:base' からマスクされています: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;      intersect, setdiff, setequal, union</span>
 <span class="kw">library</span>(knitr) <span class="co"># 出力のため</span>
 
-a &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/reexports">data_frame</a></span>(<span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</span>),
+a &lt;-<span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">data_frame</a></span>(<span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</span>),
                 <span class="dt">text =</span> <span class="kw">c</span>(<span class="st">"新しいスマートフォンを買った"</span>, <span class="st">"今夜はミルクティを飲む"</span>, <span class="st">"私には外国人参政権がある"</span>))
 
 a %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/rowwise">rowwise</a></span>() %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/mutate">mutate</a></span>(<span class="dt">wakati =</span> <span class="kw"><a href="../reference/jum_wakati.html">jum_wakati</a></span>(text)) %&gt;%
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span>() %&gt;%
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">wakati =</span> <span class="kw"><a href="../reference/jum_wakati.html">jum_wakati</a></span>(text)) %&gt;%
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>()</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -307,12 +299,12 @@ a %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># サーバーを利用しない</span>
 <span class="kw">system.time</span>(<span class="kw"><a href="../reference/jum_wakati.html">jum_wakati</a></span>(<span class="st">"新しいスマートフォンを買った"</span>, <span class="dt">server =</span> <span class="ot">FALSE</span>))
 <span class="co">#&gt;    ユーザ   システム       経過  </span>
-<span class="co">#&gt;      0.114      0.178      0.325</span>
+<span class="co">#&gt;      0.112      0.173      0.322</span>
 
 <span class="co"># サーバーを利用する</span>
 <span class="kw">system.time</span>(<span class="kw"><a href="../reference/jum_wakati.html">jum_wakati</a></span>(<span class="st">"新しいスマートフォンを買った"</span>, <span class="dt">server =</span> <span class="ot">TRUE</span>))
 <span class="co">#&gt;    ユーザ   システム       経過  </span>
-<span class="co">#&gt;      0.032      0.008      0.078</span></code></pre></div>
+<span class="co">#&gt;      0.049      0.048      0.128</span></code></pre></div>
 <p>実行時間に明らかに差が出ていることが分かります。</p>
 <p>解析が終了したら、 JUMAN++ のサーバーを停止します。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/jum_close_server.html">jum_close_server</a></span>()</code></pre></div>
