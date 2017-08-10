@@ -1,0 +1,56 @@
+---
+title: "R interface for JUMAN++"
+author: "Yuya Matsumura"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 概要
+
+## インストール
+### JUMAN++のインストール
+現在、JUMAN++は Windows には対応していないようです。
+
+#### Mac
+Homebrew でインストールできます。
+
+```{bash, eval=FALSE}
+$ brew install jumanpp
+```
+
+#### Linux(例: Ubuntu)
+
+```{bash, eval=FALSE}
+$ wget http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-1.01.tar.xz
+$ tar xJvf jumanpp-1.01.tar.xz
+$ cd jumanpp-1.01/
+$ ./configure
+$ make
+$ sudo make install
+```
+
+### `rjumanpp`のインストール
+`githubinstall::githubinstall()` 関数または `devtools::install_github()` 関数でインストールします。
+```{r eval=FALSE}
+# if you have not installed "githubinstall" and "devtools" packages
+install.packages(c("githubinstall", "devtools"))
+
+# using githuninstall
+githubinstall::githubinstall("rjumanpp")
+
+# usingdevtools
+devtools::install_github("ymattu/rjumanpp")
+```
+
+## 詳細
+### 関数
+
+### 引数
