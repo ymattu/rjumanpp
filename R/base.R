@@ -17,6 +17,23 @@ jum_file <- function (filename, server = FALSE) {
   # input command
   if(server == TRUE) {
     rb_client <- system.file("ruby/client.rb", package = "rjumanpp")
+
+    hostn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $15}'",
+                    intern = TRUE)
+    if(identical(hostn, "")) {
+      host <- ""
+    } else {
+      host <- paste("--host", hostn)
+    }
+
+    portn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $18}'",
+                    intern = TRUE)
+    if(identical(portn, "")) {
+      port <- ""
+    } else {
+      port <- paste("--host", hostn)
+    }
+
     command <- paste("cat", filename, "| ruby", rb_client)
   } else {
     command <- paste("cat", filename, "| jumanpp --force-single-path")
@@ -55,7 +72,24 @@ jum_text <- function (input, server = FALSE) {
   # input command
   if(server == TRUE) {
     rb_client <- system.file("ruby/client.rb", package = "rjumanpp")
-    command <- paste("echo", input, "| ruby", rb_client)
+
+    hostn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $15}'",
+                   intern = TRUE)
+    if(identical(hostn, "")) {
+      host <- ""
+    } else {
+      host <- paste("--host", hostn)
+    }
+
+    portn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $18}'",
+                  intern = TRUE)
+    if(identical(portn, "")) {
+      port <- ""
+    } else {
+      port <- paste("--host", hostn)
+    }
+
+    command <- paste("echo", input, "| ruby", rb_client, host, port)
   } else {
     command <- paste("echo", input, "| jumanpp --force-single-path")
   }
