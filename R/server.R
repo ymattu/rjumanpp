@@ -47,7 +47,7 @@ jum_close_server <- function() {
                 intern = TRUE)
 
   if(length(pid) == 0) {
-    stop("JUMAN++ server is not active.")
+    stop("JUMAN++ server is not running.")
   }
 
   cmd <- paste("kill", pid)

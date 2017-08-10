@@ -34,7 +34,7 @@ jum_file <- function (filename, server = FALSE) {
       port <- paste("--host", portn)
     }
 
-    command <- paste("cat", filename, "| ruby", rb_client)
+    command <- paste("cat", filename, "| ruby", rb_client, host, port)
   } else {
     command <- paste("cat", filename, "| jumanpp --force-single-path")
   }
