@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-R binding for JUMAN++
-=====================
+R interface for JUMAN++
+=======================
 
 <!-- [![Build Status](https://travis-ci.org/ymattu/rjumanpp.svg?branch=master)](https://travis-ci.org/ymattu/rjumanpp)  -->
 This package is made for mainly Japanese.
@@ -44,8 +44,8 @@ $ sudo make install
 devtools::install_github("ymattu/rjumanpp")
 ```
 
-使い方
-======
+使い方(抜粋)
+============
 
 ``` r
 library(rjumanpp)
@@ -136,4 +136,4 @@ Future Work
 -   \[x\] 原型を返すオプションへの対応
 -   \[ \] ファイル入力への対応
 -   \[ \] データフレームへの対応
--   \[ \] サーバーモードへの対応
+-   \[x\] サーバーモードへの対応
