@@ -31,7 +31,7 @@ jum_file <- function (filename, server = FALSE) {
     if(identical(portn, "")) {
       port <- ""
     } else {
-      port <- paste("--host", hostn)
+      port <- paste("--host", portn)
     }
 
     command <- paste("cat", filename, "| ruby", rb_client)
