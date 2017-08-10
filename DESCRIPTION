@@ -1,9 +1,10 @@
 Package: rjumanpp
 Title: R interface for JUMAN++
-Version: 0.0.0.9992
+Version: 0.0.0.9993
 Authors@R: person("Yuya", "Matsumura", email = "mattu.yuya@gmail.com", role = c("aut", "cre"))
 Description: Parsing Japanese texts with JUMAN++. Make a Japanese sentence with a space between words.
 Depends: R (>= 3.3)
+SystemRequirements: JUMAN++, Ruby
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

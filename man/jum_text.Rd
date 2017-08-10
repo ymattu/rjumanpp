@@ -4,10 +4,12 @@
 \alias{jum_text}
 \title{Simple result of JUMAN++(text)}
 \usage{
-jum_text(input)
+jum_text(input, server = FALSE)
 }
 \arguments{
 \item{input}{input text}
+
+\item{server}{if TRUE, JUMAN++ server is used. In such a case, you have to \command{jum_start_server} to start JUMAN++ server.}
 }
 \value{
 result of JUMAN++
