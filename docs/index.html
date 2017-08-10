@@ -60,109 +60,12 @@
     
     
 <div class="contents">
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 <div id="r-interface-for-juman" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#r-interface-for-juman" class="anchor"></a>R interface for JUMAN++</h1></div>
-<!-- [![Build Status](https://travis-ci.org/ymattu/rjumanpp.svg?branch=master)](https://travis-ci.org/ymattu/rjumanpp)  -->
 <p>This package is made for mainly Japanese.</p>
 <p>表記ゆれや話し言葉に強いと言われる日本語形態素解析器 <strong>JUMAN++</strong> を R から操作するためのパッケージです。</p>
-<p><strong>注: このパッケージは開発中です。</strong></p>
-</div>
-<div class="section level1">
-<h1>インストール</h1>
-<div id="juman" class="section level2">
-<h2 class="hasAnchor">
-<a href="#juman" class="anchor"></a>JUMAN++のインストール</h2>
-<p>現在、JUMAN++は Windows には対応していないようです。</p>
-<div id="mac" class="section level3">
-<h3 class="hasAnchor">
-<a href="#mac" class="anchor"></a>Mac</h3>
-<p>Homebrew でインストールできます。</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="kw">brew</span> install jumanpp</code></pre></div>
-</div>
-<div id="linux-ubuntu" class="section level3">
-<h3 class="hasAnchor">
-<a href="#linux-ubuntu" class="anchor"></a>Linux(例: Ubuntu)</h3>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="kw">wget</span> http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-1.01.tar.xz
-$ <span class="kw">tar</span> xJvf jumanpp-1.01.tar.xz
-$ <span class="kw">cd</span> jumanpp-1.01/
-$ <span class="kw">./configure</span>
-$ <span class="kw">make</span>
-$ <span class="kw">sudo</span> make install</code></pre></div>
-</div>
-</div>
-<div id="rjumanpp" class="section level2">
-<h2 class="hasAnchor">
-<a href="#rjumanpp" class="anchor"></a><code>rjumanpp</code>のインストール</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">"ymattu/rjumanpp"</span>)</code></pre></div>
-</div>
-</div>
-<div class="section level1">
-<h1>使い方(抜粋)</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rjumanpp)</code></pre></div>
-<div class="section level2">
-<h2>単純な形態素解析</h2>
-<p>文字列を引数として単純な形態素解析をしたい場合は、<code><a href="reference/jum_c.html">jum_c()</a></code>関数を使います。 <code><a href="http://www.rdocumentation.org/packages/RMeCab/topics/RMeCabC">RMeCab::RMeCabC()</a></code> のように、品詞が names 属性のリストを返します。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/jum_c.html">jum_c</a></span>(<span class="st">"私には外国人参政権がある。"</span>)
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; 名詞 </span>
-<span class="co">#&gt; "私" </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; 助詞 </span>
-<span class="co">#&gt; "に" </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; 助詞 </span>
-<span class="co">#&gt; "は" </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[4]]</span>
-<span class="co">#&gt;   名詞 </span>
-<span class="co">#&gt; "外国" </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[5]]</span>
-<span class="co">#&gt; 名詞 </span>
-<span class="co">#&gt; "人" </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[6]]</span>
-<span class="co">#&gt;   名詞 </span>
-<span class="co">#&gt; "参政" </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[7]]</span>
-<span class="co">#&gt; 名詞 </span>
-<span class="co">#&gt; "権" </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[8]]</span>
-<span class="co">#&gt; 助詞 </span>
-<span class="co">#&gt; "が" </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[9]]</span>
-<span class="co">#&gt;   動詞 </span>
-<span class="co">#&gt; "ある" </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[10]]</span>
-<span class="co">#&gt; 特殊 </span>
-<span class="co">#&gt; "。"</span></code></pre></div>
-</div>
-<div class="section level2">
-<h2>分かち書き</h2>
-<p>単純に文章を入力して分かち書きを得たい場合は <code><a href="reference/jum_wakati.html">jum_wakati()</a></code>関数を使います。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/jum_wakati.html">jum_wakati</a></span>(<span class="st">"私には外国人参政権がある。"</span>)
-<span class="co">#&gt; [1] "私 に は 外国 人 参政 権 が ある 。"</span></code></pre></div>
-<p>品詞を指定して分かち書きを得ることもできます。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/jum_wakati.html">jum_wakati</a></span>(<span class="st">"私には外国人参政権がある。"</span>, <span class="dt">pos =</span> <span class="st">"名詞"</span>)
-<span class="co">#&gt; [1] "私 外国 人 参政 権"</span></code></pre></div>
-<p><code>pos</code>引数は ICU 正規表現による指定が可能で、<code>pos = "名詞|形容詞"</code>のように書くこともできます。</p>
-</div>
-<div class="section level2">
-<h2>表記ゆれへの対応</h2>
-<p><code>redirect</code>オプションを<code>TRUE</code>にすることで、表記ゆれ(JUMAN++の Wikipedia リダイレクトで取得)を置き換えることができます。この関数は現在全ての関数につけることができます。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/jum_wakati.html">jum_wakati</a></span>(<span class="st">"私はけんさくえんじんぐーぐるを使う"</span>, <span class="dt">redirect =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] "私 は けんさく えんじん Ｇｏｏｇｌｅ を 使う"</span>
-<span class="kw"><a href="reference/jum_wakati.html">jum_wakati</a></span>(<span class="st">"私はけんさくえんじんぐーぐるを使う"</span>, <span class="dt">pos =</span> <span class="st">"名詞"</span>, <span class="dt">redirect =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] "私 けんさく えんじん Ｇｏｏｇｌｅ"</span></code></pre></div>
-</div>
+<p>詳細は<a href="https://ymattu.github.io/rjumanpp/index.html">こちら</a></p>
 </div>
 <div id="future-work" class="section level1">
 <h1 class="hasAnchor">
