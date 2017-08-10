@@ -16,11 +16,11 @@ knitr::opts_chunk$set(echo = TRUE,
 ```
 
 ## 概要
-**rjumanpp**パッケージは、表記ゆれや話し言葉に強いと言われる日本語形態素解析器 **JUMAN++** を R から操作するためのパッケージです。
+**rjumanpp** パッケージは、表記ゆれや話し言葉に強いと言われる日本語形態素解析器 **JUMAN++** を R から操作するためのパッケージです。
 
 ## インストール
 ### JUMAN++のインストール
-現在、JUMAN++は Windows には対応していないようです。
+現在、JUMAN++ は Windows には対応していないようです。
 
 #### Mac
 Homebrew でインストールできます。
@@ -40,7 +40,7 @@ $ make
 $ sudo make install
 ```
 
-### `rjumanpp`のインストール
+### **rjumanpp** のインストール
 `githubinstall::githubinstall()` 関数または `devtools::install_github()` 関数でインストールします。
 ```{r eval=FALSE}
 # if you have not installed "githubinstall" and "devtools" packages
@@ -53,23 +53,39 @@ githubinstall::githubinstall("rjumanpp")
 devtools::install_github("ymattu/rjumanpp")
 ```
 
-**rjumanpp**パッケージのソースコードは以下のGitHubレポジトリで公開しています。
+**rjumanpp** パッケージのソースコードは以下のGitHubレポジトリで公開しています。
 
 https://github.com/ymattu/rjumanpp
 
 ## 詳細
+### 関数
+**rjumanpp** パッケージは形態素解析に関する基本的な関数を提供します。
+
+- `jum_c()`
+- `jum-wakati()`
+- `jum_text()`
+- `jum_file()`
+
+また、JUMAN++ をサーバーモードで動かすための関数もサポートしています。
+
+- `jum_start_server()`
+- `jum_close_server()`
+
+関数には `jum` という共通のプレフィックスをつけています。関数を使うためには、 **rjumanpp** パッケージを以下のように読み込む必要があります。
+
 ```{r }
 library(rjumanpp)
 ```
 
-## 単純な形態素解析
-文字列を引数として単純な形態素解析をしたい場合は、`jum_c()`関数を使います。 `RMeCab::RMeCabC()` のように、品詞が names 属性のリストを返します。
+### 具体例
+#### 単純な形態素解析
+文字列を引数として単純な形態素解析をしたい場合は、`jum_c()` 関数を使います。 `RMeCab::RMeCabC()` のように、品詞が names 属性のリストを返します。
 ```{r }
 jum_c("私には外国人参政権がある。")
 ```
 
-## 分かち書き
-単純に文章を入力して分かち書きを得たい場合は `jum_wakati()`関数を使います。オプションを何も指定しない場合は、入力した文字列の表層形を返します。
+#### 分かち書き
+単純に文章を入力して分かち書きを得たい場合は `jum_wakati()` 関数を使います。オプションを何も指定しない場合は、入力した文字列の表層形を返します。
 ```{r }
 jum_wakati("私には外国人参政権がある。")
 ```
@@ -79,22 +95,83 @@ jum_wakati("私には外国人参政権がある。")
 jum_wakati("私には外国人参政権がある。", pos = "名詞")
 ```
 
-`pos`引数は ICU 正規表現による指定が可能で、`pos = "名詞|形容詞"`のように書くこともできます。
+`pos` 引数は ICU 正規表現による指定が可能で、`pos = "名詞|形容詞"` のように書くこともできます。
 
-## 表記ゆれへの対応
-`redirect`オプションを`TRUE`にすることで、表記ゆれ(JUMAN++の Wikipedia リダイレクトで取得)を置き換えることができます。この関数は現在以下の関数でサポートされています。
+#### 表記ゆれへの対応
+`redirect` オプションを `TRUE` にすることで、表記ゆれ(JUMAN++ の Wikipedia リダイレクトで取得)を置き換えることができます。この関数は現在以下の関数でサポートされています。
 
-- jum_text()
-- jum_file()
-- jum_c()
-- jum-wakati()
+- `jum_text()`
+- `jum_file()`
+- `jum_c()`
+- `jum-wakati()`
 
 ```{r }
 jum_wakati("私はけんさくえんじんぐーぐるを使う", redirect = TRUE)
 jum_wakati("私はけんさくえんじんぐーぐるを使う", pos = "名詞", redirect = TRUE)
 ```
 
-## サーバーモードへの対応
+#### データフレームの場合
+実際にデータ解析をする場合、データフレームの特定の列に対して形態素解析をしたいことがしばしばあります。そのような時は、 `dplyr::rowwise()` 関数で1行ごとに区切って `jum_wakati()`  関数に渡します。
 
-## 関連するパッケージ
+```{R}
+library(dplyr)
+
+a <- data_frame(id = c(1:3),
+                text = c("新しいスマートフォンを買った", "今夜はミルクティを飲む", "私には外国人参政権がある"))
+
+a %>%
+  rowwise() %>%
+  mutate(wakati = jum_wakati(text))
+```
+
+#### その他の関数
+##### `jum_text()`
+JUMAN++に文字列を渡して、素の結果を出力します。
+
+```{r}
+jum_text("新しいスマートフォンを買った")
+```
+
+##### `jum_file()`
+`jum_file()` 関数の入力をテキストファイルにしたバージョンです。
+
+### サーバーモードへの対応
+JUMAN++ はサーバーモードとして常に起動しておくことができます。これにより、新しい入力のたびにJUMAN++ を呼び出すオーバーヘッドを回避し、結果を高速に得ることができます。
+
+サーバーモードを使うためには、`Ruby` がインストールされている必要があるため、インストールされていない場合は適宜インストールをしてください。
+
+**rjumanpp**パッケージからサーバーモードを使うためには、まず `jum_start_server()` 関数でサーバーを起動します。そして、形態素解析の関数で `server = TRUE` を指定します。
+
+```{r}
+# JUMAN++サーバーを起動
+jum_start_server()
+
+# 関数内でserver=TRUEを指定
+jum_wakati("新しいスマートフォンを買った", server = TRUE)
+```
+
+`jum_start_server()` 関数は、必要に応じてサーバーの名前とポート番号を指定することができます。デフォルトではlocalhostの12000ポートにつなぎます。
+```{r eval=FALSE}
+jum_start_server(host.name = "hoge", port = 1234)
+```
+
+サーバーモードで JUMAN++ を利用することで、どの程度実行が速くなるのか見てみましょう。
+
+```{r}
+# サーバーを利用しない
+system.time(jum_wakati("新しいスマートフォンを買った", server = FALSE))
+
+# サーバーを利用する
+system.time(jum_wakati("新しいスマートフォンを買った", server = TRUE))
+```
+
+実行時間に明らかに差が出ていることが分かります。
+
+解析が終了したら、 JUMAN++ のサーバーを停止します。
+```{r}
+jum_close_server()
+```
+
+## 関連するソフト、パッケージ
+- [JUMAN++](http://nlp.ist.i.kyoto-u.ac.jp/?JUMAN%2B%2B)
 - [RMeCab](http://rmecab.jp/wiki/index.php?RMeCab)
