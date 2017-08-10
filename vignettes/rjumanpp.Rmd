@@ -62,7 +62,7 @@ https://github.com/ymattu/rjumanpp
 **rjumanpp** パッケージは形態素解析に関する基本的な関数を提供します。
 
 - `jum_c()`
-- `jum-wakati()`
+- `jum_wakati()`
 - `jum_text()`
 - `jum_file()`
 
