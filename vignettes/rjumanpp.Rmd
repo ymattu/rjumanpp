@@ -53,7 +53,7 @@ githubinstall::githubinstall("rjumanpp")
 devtools::install_github("ymattu/rjumanpp")
 ```
 
-**rjumanpp**パッケージのソースコードは以下のGiyhubレポジトリで公開しています。
+**rjumanpp**パッケージのソースコードは以下のGitHubレポジトリで公開しています。
 
 https://github.com/ymattu/rjumanpp
 
