@@ -115,7 +115,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"ymattu/rjuman
 <p><strong>rjumanpp</strong> パッケージは形態素解析に関する基本的な関数を提供します。</p>
 <ul>
 <li><code><a href="../reference/jum_c.html">jum_c()</a></code></li>
-<li><code>jum-wakati()</code></li>
+<li><code><a href="../reference/jum_wakati.html">jum_wakati()</a></code></li>
 <li><code><a href="../reference/jum_text.html">jum_text()</a></code></li>
 <li><code><a href="../reference/jum_file.html">jum_file()</a></code></li>
 </ul>
@@ -307,12 +307,12 @@ a %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># サーバーを利用しない</span>
 <span class="kw">system.time</span>(<span class="kw"><a href="../reference/jum_wakati.html">jum_wakati</a></span>(<span class="st">"新しいスマートフォンを買った"</span>, <span class="dt">server =</span> <span class="ot">FALSE</span>))
 <span class="co">#&gt;    ユーザ   システム       経過  </span>
-<span class="co">#&gt;      0.114      0.171      0.317</span>
+<span class="co">#&gt;      0.114      0.178      0.325</span>
 
 <span class="co"># サーバーを利用する</span>
 <span class="kw">system.time</span>(<span class="kw"><a href="../reference/jum_wakati.html">jum_wakati</a></span>(<span class="st">"新しいスマートフォンを買った"</span>, <span class="dt">server =</span> <span class="ot">TRUE</span>))
 <span class="co">#&gt;    ユーザ   システム       経過  </span>
-<span class="co">#&gt;      0.030      0.008      0.079</span></code></pre></div>
+<span class="co">#&gt;      0.032      0.008      0.078</span></code></pre></div>
 <p>実行時間に明らかに差が出ていることが分かります。</p>
 <p>解析が終了したら、 JUMAN++ のサーバーを停止します。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/jum_close_server.html">jum_close_server</a></span>()</code></pre></div>
