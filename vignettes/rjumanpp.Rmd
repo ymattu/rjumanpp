@@ -103,7 +103,7 @@ jum_wakati("私には外国人参政権がある。", pos = "名詞")
 - `jum_text()`
 - `jum_file()`
 - `jum_c()`
-- `jum-wakati()`
+- `jum_wakati()`
 
 ```{r }
 jum_wakati("私はけんさくえんじんぐーぐるを使う", redirect = TRUE)
@@ -115,13 +115,15 @@ jum_wakati("私はけんさくえんじんぐーぐるを使う", pos = "名詞"
 
 ```{R}
 library(dplyr)
+library(knitr) # 出力のため
 
 a <- data_frame(id = c(1:3),
                 text = c("新しいスマートフォンを買った", "今夜はミルクティを飲む", "私には外国人参政権がある"))
 
 a %>%
   rowwise() %>%
-  mutate(wakati = jum_wakati(text))
+  mutate(wakati = jum_wakati(text)) %>%
+  kable()
 ```
 
 #### その他の関数
@@ -133,7 +135,7 @@ jum_text("新しいスマートフォンを買った")
 ```
 
 ##### `jum_file()`
-`jum_file()` 関数の入力をテキストファイルにしたバージョンです。
+`jum_text()` 関数の入力をテキストファイルにしたバージョンです。
 
 ### サーバーモードへの対応
 JUMAN++ はサーバーモードとして常に起動しておくことができます。これにより、新しい入力のたびにJUMAN++ を呼び出すオーバーヘッドを回避し、結果を高速に得ることができます。
