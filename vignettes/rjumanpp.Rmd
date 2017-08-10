@@ -10,10 +10,13 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,
+                      collapse = TRUE,
+                      comment = "#>")
 ```
 
 ## 概要
+**rjumanpp**パッケージは、表記ゆれや話し言葉に強いと言われる日本語形態素解析器 **JUMAN++** を R から操作するためのパッケージです。
 
 ## インストール
 ### JUMAN++のインストール
@@ -50,7 +53,48 @@ githubinstall::githubinstall("rjumanpp")
 devtools::install_github("ymattu/rjumanpp")
 ```
 
-## 詳細
-### 関数
+**rjumanpp**パッケージのソースコードは以下のGiyhubレポジトリで公開しています。
 
-### 引数
+https://github.com/ymattu/rjumanpp
+
+## 詳細
+```{r }
+library(rjumanpp)
+```
+
+## 単純な形態素解析
+文字列を引数として単純な形態素解析をしたい場合は、`jum_c()`関数を使います。 `RMeCab::RMeCabC()` のように、品詞が names 属性のリストを返します。
+```{r }
+jum_c("私には外国人参政権がある。")
+```
+
+## 分かち書き
+単純に文章を入力して分かち書きを得たい場合は `jum_wakati()`関数を使います。オプションを何も指定しない場合は、入力した文字列の表層形を返します。
+```{r }
+jum_wakati("私には外国人参政権がある。")
+```
+
+品詞を指定して分かち書きを得ることもできます。
+```{r }
+jum_wakati("私には外国人参政権がある。", pos = "名詞")
+```
+
+`pos`引数は ICU 正規表現による指定が可能で、`pos = "名詞|形容詞"`のように書くこともできます。
+
+## 表記ゆれへの対応
+`redirect`オプションを`TRUE`にすることで、表記ゆれ(JUMAN++の Wikipedia リダイレクトで取得)を置き換えることができます。この関数は現在以下の関数でサポートされています。
+
+- jum_text()
+- jum_file()
+- jum_c()
+- jum-wakati()
+
+```{r }
+jum_wakati("私はけんさくえんじんぐーぐるを使う", redirect = TRUE)
+jum_wakati("私はけんさくえんじんぐーぐるを使う", pos = "名詞", redirect = TRUE)
+```
+
+## サーバーモードへの対応
+
+## 関連するパッケージ
+- [RMeCab](http://rmecab.jp/wiki/index.php?RMeCab)
