@@ -9,10 +9,19 @@ jum_start_server <- function(host.name = NULL, port = NULL) {
     stop("PATH to Ruby not found. Please check Ruby is installed.")
   }
 
+  pid <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $2}'",
+                intern = TRUE)
+
+  if(length(pid) != 0) {
+    stop("JUMAN++ server is already running.")
+  }
+
   bg <- "nohup"
   rb_file <- system.file("ruby/server.rb", package = "rjumanpp")
   cmd <- "--cmd"
-  jum <- shQuote("jumanpp --force-single-path")
+  jumanpp_option <- "--force-single-path"
+  jumanpp <- paste("jumanpp", jumanpp_option)
+  jum <- shQuote(jumanpp)
 
   if(is.null(host.name) == FALSE) {
     host <- paste("-- host", host.name)
