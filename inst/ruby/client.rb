@@ -1,5 +1,5 @@
 #coding: utf-8
-#
+
 require "socket"
 require 'optparse'
 
@@ -15,11 +15,6 @@ OptionParser.new("Usage: ruby #{__FILE__} [options] [input_tsv]") do |opt|
   end
   opt.parse!
 end
-
-#port = 8001
-#if(ARGV.size > 0)
-#  port = ARGV[0].to_i
-#end
 
 s = TCPSocket.open(opts['host'], opts['port'])
 
