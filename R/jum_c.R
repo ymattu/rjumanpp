@@ -24,6 +24,10 @@ jum_c <- function (input,
     app <- 3
   }
 
+  if(length(res_list) == 0) {
+    return("")
+  }
+
   # morph
   # select class
     if(is.null(pos) == TRUE) {
