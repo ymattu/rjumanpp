@@ -65,10 +65,15 @@ jum_c <- function (input,
           {
             return(x[app])
           }
+      } else {
+        return(list())
       }
     }))
   }
 
+  if(length(res_morph) == 0) {
+    return("")
+  }
 
   # class
   res_names <- unlist(sapply(res_list, function(x){

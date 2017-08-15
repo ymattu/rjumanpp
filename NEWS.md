@@ -1,3 +1,6 @@
+# rjumanpp 0.0.0.9994
+* fix minor bugs
+
 # rjumanpp 0.0.0.9993
 * add server mode option to `jum_c()`, `jum_wakati()`, `jum_text()`, and `jum_file()`. When use `server = TRUE`, please start server using `jum_start_server()`.
 

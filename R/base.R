@@ -77,6 +77,8 @@ jum_text <- function (input, server = FALSE) {
     stop("first argument must be specified")
   }
 
+  input <- shQuote(input)
+
   # input command
   if(server == TRUE) {
     pid <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $2}'",
