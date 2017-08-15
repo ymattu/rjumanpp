@@ -1,9 +1,9 @@
 ##' Simple Morphological Analysis
 ##'
 ##' @param input input text
+##' @param mypref Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.
 ##' @param pos extract pattern i.e. "名詞|動詞"
 ##' @param redirect Whether or not redirect to Wikipedia redirect. Default is FALSE.
-##' @param mypref Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.
 ##' @param server if TRUE, JUMAN++ server is used. In such a case, you have to \command{jum_start_server} to start JUMAN++ server.
 ##' @return named list of Morphological Analysis
 ##' @export
