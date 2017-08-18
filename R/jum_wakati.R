@@ -9,9 +9,10 @@
 ##' @param mypref Default being 0, the same morphemic forms that appear on the text are returned. If 1 is designated, the basic forms of them are instead.
 ##' @param server if TRUE, JUMAN++ server is used. In such a case, you have to \command{jum_start_server} to start JUMAN++ server.
 ##' @return wakatigaki of the input text
-##' @importFrom magrittr %>%
-##' @importFrom stringr str_c str_subset str_split str_detect str_replace
-##'
+##' @importFrom magrittr %>% %<>%
+##' @importFrom stringr str_c str_replace str_replace_all
+##' @importFrom stringi stri_startswith_fixed
+##' @importFrom purrr map_chr
 ##' @export
 jum_wakati <- function (input,
                         mypref = 0,
@@ -25,10 +26,20 @@ jum_wakati <- function (input,
     stop("first argument must be specified")
   }
 
-  res <- jum_c(input = input, mypref = mypref, pos = pos, redirect = redirect, server = server)
+  wakati <- jum_c(input = input, mypref = mypref, pos = pos, redirect = redirect, server = server) %>%
+    map_chr(function(x) {return(x[[1]])}) %>%
+    str_c(collapse = " ") %>%
+    str_replace_all("\u3000", "") %>% # full width spaces
+    str_replace(" +$", "") # space end of the text
 
-  res_word <- sapply(res, function(x){return(x[[1]])})
-  wakati <- str_c(res_word, collapse = " ")
+  if(str_detect(wakati, "\\\\") == TRUE) {
+    wakati %<>%
+      str_replace_all("\\\\", "")
+  }
+
+  if(stri_startswith_fixed(wakati, " ")) {
+    return("")
+  }
 
   return(wakati)
 

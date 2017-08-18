@@ -9,6 +9,7 @@
 ##' @export
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset str_split str_detect str_replace
+##' @importFrom purrr map map_chr
 jum_c <- function (input,
                    mypref = 0,
                    pos = NULL,
@@ -30,71 +31,72 @@ jum_c <- function (input,
 
   # morph
   # select class
-    if(is.null(pos) == TRUE) {
-    res_morph <- unlist(sapply(res_list, function(x){
-      # Wikipedia redirect(orthographical variants)
-      if (redirect != TRUE) {
-        return(x[app])
-      } else
-        if (is.na(str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8"))) {
-          return(x[app])
-        } else if (str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8") == TRUE ){
-          redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
-            str_replace("\\\"", "")
-          return(redirect_word)
-        } else
-        {
-          return(x[app])
-        }
-    }
-    ))
-  } else {
-    res_morph <- unlist(sapply(res_list, function(x){
-      if(identical(x[1], "")){
-        return("")
-      }
-
-      if(str_detect(x[4], pos) == TRUE){
-        # Wikipedia redirect(orthographical variants)
-        if (redirect != TRUE) {
-          return(x[app])
-        } else
-          if (is.na(str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8"))) {
-            return(x[app])
-          } else if (str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8") == TRUE ){
-            redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
-              str_replace("\\\"", "")
-            return(redirect_word)
-          } else
-          {
-            return(x[app])
-          }
+  if(is.null(pos) == TRUE) {
+      res_morph <- unlist(
+        res_list %>%
+          map_chr(function(x){
+            # Wikipedia redirect(orthographical variants)
+            if (redirect != TRUE) {
+              return(x[app])
+              } else if (is.na(str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8"))) {
+                return(x[app])
+                } else if (str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8") == TRUE ){
+                  redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
+                    str_replace("\\\"", "")
+                  return(redirect_word)
+                  } else {
+                    return(x[app])
+                  }
+            }
+            ))
       } else {
-        return(list())
-      }
-    }))
-  }
+        res_morph <- unlist(
+          res_list %>%
+            map(function(x){
+
+              if(x[1] %in% c(NA, "", "\\")){
+                return("")
+                }
+
+              if(str_detect(x[4], pos) == TRUE){
+                # Wikipedia redirect(orthographical variants)
+                if (redirect != TRUE) {
+                  return(x[app])
+                  } else if (is.na(str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8"))) {
+                    return(x[app])
+                    } else if (str_detect(x[13], "\u30ea\u30c0\u30a4\u30ec\u30af\u30c8") == TRUE ){
+                      redirect_word <- str_replace(x[13], "Wikipedia\u30ea\u30c0\u30a4\u30ec\u30af\u30c8:", "") %>% # Wikioediaリダイレクト
+                        str_replace("\\\"", "")
+                      return(redirect_word)
+                      } else {
+                        return(x[app])
+                        }
+                } else {
+                  return(list())
+                  }
+              }))
+        }
 
   if(length(res_morph) == 0) {
     return("")
-  }
+    }
 
   # class
-  res_names <- unlist(sapply(res_list, function(x){
+  res_names <- unlist(res_list %>% map(function(x){
     if(is.null(pos) == TRUE) {
       res_names <- unlist(sapply(res_list, function(x){
         return(x[4])
       }))
-  } else {
-    res_names <- unlist(sapply(res_list, function(x){
-      if(identical(x[1], "")){
-        return("特殊") # 特殊
-      }
-      if(str_detect(x[4], pos) == TRUE){
-        return(x[4])
-      }
-    }))
-  }
+    } else {
+      res_names <- unlist(sapply(res_list, function(x){
+        if(x[4] %in% c(NA, "", "\\")){
+          return("特殊") # 特殊
+        }
+        if(str_detect(x[4], pos) == TRUE){
+          return(x[4])
+        }
+      }))
+    }
   }))
 
   # output
