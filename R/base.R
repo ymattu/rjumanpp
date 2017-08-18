@@ -6,6 +6,7 @@
 ##' @export
 ##' @importFrom magrittr %>%
 ##' @importFrom stringr str_subset
+##' @importFrom purrr map
 jum_file <- function (filename, server = FALSE) {
 
   if (!file.exists(filename)) {
@@ -115,9 +116,10 @@ jum_text <- function (input, server = FALSE) {
     str_subset("^(?!EOS)") # EOSを削除
 
   # make a list
-  res_list <- lapply(res, function(x){
-    out <- unlist(str_split(x, pattern = " "))
-    return(unlist(out))
+  res_list <- res %>%
+    map(function(x){
+      out <- unlist(str_split(x, pattern = " "))
+      return(unlist(out))
   })
 
   return(res_list)
