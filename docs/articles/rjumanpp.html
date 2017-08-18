@@ -59,7 +59,7 @@
       <h1>R interface for JUMAN++</h1>
                         <h4 class="author">Yuya Matsumura</h4>
             
-            <h4 class="date">2017-08-10</h4>
+            <h4 class="date">2017-08-19</h4>
           </div>
 
     
@@ -189,10 +189,13 @@ devtools::<span class="kw">install_github</span>(<span class="st">"ymattu/rjuman
 <h4>引数を使える関数</h4>
 <p><code>pos</code>, <code>redirect</code>, <code>mypref</code>, 後述する <code>server</code> 引数は現在以下の関数で使うことができます。</p>
 <ul>
-<li><code><a href="../reference/jum_text.html">jum_text()</a></code></li>
-<li><code><a href="../reference/jum_file.html">jum_file()</a></code></li>
 <li><code><a href="../reference/jum_c.html">jum_c()</a></code></li>
 <li><code><a href="../reference/jum_wakati.html">jum_wakati()</a></code></li>
+</ul>
+<p>また、以下の関数では <code>server</code> 引数のみをサポートしています。</p>
+<ul>
+<li><code><a href="../reference/jum_text.html">jum_text()</a></code></li>
+<li><code><a href="../reference/jum_file.html">jum_file()</a></code></li>
 </ul>
 </div>
 <div class="section level4">
@@ -295,12 +298,12 @@ a %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># サーバーを利用しない</span>
 <span class="kw">system.time</span>(<span class="kw"><a href="../reference/jum_wakati.html">jum_wakati</a></span>(<span class="st">"新しいスマートフォンを買った"</span>, <span class="dt">server =</span> <span class="ot">FALSE</span>))
 <span class="co">#&gt;    ユーザ   システム       経過  </span>
-<span class="co">#&gt;      0.167      0.288      0.591</span>
+<span class="co">#&gt;      0.124      0.260      0.395</span>
 
 <span class="co"># サーバーを利用する</span>
 <span class="kw">system.time</span>(<span class="kw"><a href="../reference/jum_wakati.html">jum_wakati</a></span>(<span class="st">"新しいスマートフォンを買った"</span>, <span class="dt">server =</span> <span class="ot">TRUE</span>))
 <span class="co">#&gt;    ユーザ   システム       経過  </span>
-<span class="co">#&gt;      0.080      0.075      0.216</span></code></pre></div>
+<span class="co">#&gt;      0.082      0.090      0.210</span></code></pre></div>
 <p>実行時間に明らかに差が出ていることが分かります。</p>
 <p>解析が終了したら、 JUMAN++ のサーバーを停止します。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/jum_close_server.html">jum_close_server</a></span>()</code></pre></div>
