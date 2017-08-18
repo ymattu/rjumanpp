@@ -10,7 +10,7 @@
 ##' @param server if TRUE, JUMAN++ server is used. In such a case, you have to \command{jum_start_server} to start JUMAN++ server.
 ##' @return wakatigaki of the input text
 ##' @importFrom magrittr %>%
-##' @importFrom stringr str_subset str_split str_detect str_replace
+##' @importFrom stringr str_c str_subset str_split str_detect str_replace
 ##'
 ##' @export
 jum_wakati <- function (input,
@@ -28,7 +28,7 @@ jum_wakati <- function (input,
   res <- jum_c(input = input, mypref = mypref, pos = pos, redirect = redirect, server = server)
 
   res_word <- sapply(res, function(x){return(x[[1]])})
-  wakati <- paste(res_word, collapse = " ")
+  wakati <- str_c(res_word, collapse = " ")
 
   return(wakati)
 

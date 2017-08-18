@@ -50,6 +50,10 @@ jum_c <- function (input,
     ))
   } else {
     res_morph <- unlist(sapply(res_list, function(x){
+      if(identical(x[1], "")){
+        return("")
+      }
+
       if(str_detect(x[4], pos) == TRUE){
         # Wikipedia redirect(orthographical variants)
         if (redirect != TRUE) {
@@ -83,6 +87,9 @@ jum_c <- function (input,
       }))
   } else {
     res_names <- unlist(sapply(res_list, function(x){
+      if(identical(x[1], "")){
+        return("特殊") # 特殊
+      }
       if(str_detect(x[4], pos) == TRUE){
         return(x[4])
       }
@@ -96,6 +103,5 @@ jum_c <- function (input,
     res_c_list[[i]] <- res_morph[i]
     names(res_c_list[[i]]) <- res_names[i]
   }
-
   return(res_c_list)
 }
