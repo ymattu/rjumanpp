@@ -1,6 +1,6 @@
 Package: rjumanpp
 Title: R interface for JUMAN++
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: person("Yuya", "Matsumura", email = "mattu.yuya@gmail.com", role = c("aut", "cre"))
 Description: Parsing Japanese texts with JUMAN++. Make a Japanese sentence with a space between words.
 Depends: R (>= 3.3)
