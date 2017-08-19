@@ -38,5 +38,3 @@ test_that("new line code", {
   expect_equal(res, wakati)
   expect_equal(res2, wakati)
 })
-
-stringi::stri_escape_unicode("　")
