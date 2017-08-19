@@ -11,7 +11,6 @@
 ##' @return wakatigaki of the input text
 ##' @importFrom magrittr %>% %<>%
 ##' @importFrom stringr str_c str_replace str_replace_all str_trim
-##' @importFrom stringi stri_startswith_fixed
 ##' @importFrom purrr map_chr
 ##' @export
 jum_wakati <- function (input,
