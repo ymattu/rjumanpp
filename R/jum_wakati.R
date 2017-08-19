@@ -10,7 +10,7 @@
 ##' @param server if TRUE, JUMAN++ server is used. In such a case, you have to \command{jum_start_server} to start JUMAN++ server.
 ##' @return wakatigaki of the input text
 ##' @importFrom magrittr %>% %<>%
-##' @importFrom stringr str_c str_replace str_replace_all
+##' @importFrom stringr str_c str_replace str_replace_all str_trim
 ##' @importFrom stringi stri_startswith_fixed
 ##' @importFrom purrr map_chr
 ##' @export
@@ -28,19 +28,14 @@ jum_wakati <- function (input,
 
   wakati <- jum_c(input = input, mypref = mypref, pos = pos, redirect = redirect, server = server) %>%
     map_chr(function(x) {return(x[[1]])}) %>%
-    str_c(collapse = " ") %>%
-    str_replace_all("\u3000", "") %>% # full width spaces
-    str_replace(" +$", "") # space end of the text
+    str_c(collapse = " ")
+
 
   if(str_detect(wakati, "\\\\") == TRUE) {
     wakati %<>%
       str_replace_all("\\\\", "")
   }
 
-  if(stri_startswith_fixed(wakati, " ")) {
-    return("")
-  }
-
-  return(wakati)
+  return(str_trim(wakati))
 
 }
