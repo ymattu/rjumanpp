@@ -38,3 +38,16 @@ test_that("new line code", {
   expect_equal(res, wakati)
   expect_equal(res2, wakati)
 })
+
+test_that("space at the start and end", {
+  jum_start_server()
+  res <- jum_wakati("私は大学院生です ", server = TRUE, pos = "名詞")
+  res2 <- jum_wakati("私は大学院生です ", server = FALSE, pos = "名詞")
+  res3 <- jum_wakati("   私は大学院生です ", server = FALSE, pos = "名詞")
+  wakati <- "私 大学 院生"
+  jum_close_server()
+
+  expect_equal(res, wakati)
+  expect_equal(res2, wakati)
+  expect_equal(res3, wakati)
+})

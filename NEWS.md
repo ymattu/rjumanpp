@@ -1,3 +1,10 @@
+# rjumanpp 0.0.1
+* major release
+* fix minor bugs
+
+# rjumanpp 0.0.0.9995
+* fix minor bugs
+
 # rjumanpp 0.0.0.9994
 * fix minor bugs
 
