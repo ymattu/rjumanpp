@@ -1,5 +1,8 @@
+# rjumanpp 0.1.0
+* minor release
+
 # rjumanpp 0.0.1
-* major release
+* patch release
 * fix minor bugs
 
 # rjumanpp 0.0.0.9995
