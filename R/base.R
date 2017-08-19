@@ -49,7 +49,7 @@ jum_file <- function (filename, server = FALSE) {
 
   # result from JUMAN++
   res <- system(command, intern = T) %>%
-    str_subset("^(?!EOS)") # EOSを削除
+    str_subset("^(?!EOS)") # delete EOS
 
   # make a list
   res_list <- lapply(res, function(x){
@@ -113,13 +113,13 @@ jum_text <- function (input, server = FALSE) {
 
   # result from JUMAN++
   res <- system(command, intern = T) %>%
-    str_subset("^(?!EOS)") # EOSを削除
+    str_subset("^(?!EOS)") # delete EOS
 
   # make a list
   res_list <- res %>%
     map(function(x){
       out <- unlist(str_split(x, pattern = " "))
-      return(unlist(out))
+      return(out)
   })
 
   return(res_list)

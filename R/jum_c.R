@@ -82,22 +82,27 @@ jum_c <- function (input,
     }
 
   # class
-  res_names <- unlist(res_list %>% map(function(x){
-    if(is.null(pos) == TRUE) {
-      res_names <- unlist(sapply(res_list, function(x){
-        return(x[4])
-      }))
-    } else {
-      res_names <- unlist(sapply(res_list, function(x){
-        if(x[4] %in% c(NA, "", "\\")){
-          return("特殊") # 特殊
-        }
-        if(str_detect(x[4], pos) == TRUE){
+  if(is.null(pos) == TRUE) {
+    res_names <- unlist(
+      res_list %>%
+        map(function(x){
+          if(x[1] %in% c(NA, "", "\\")){
+            return("\u7279\u6b8a") # 特殊
+          }
           return(x[4])
-        }
-      }))
-    }
-  }))
+          }))
+    } else {
+      res_names <- unlist(
+        res_list %>%
+          map(function(x){
+            if(x[1] %in% c(NA, "", "\\")){
+              return("\u7279\u6b8a")
+            }
+            if(str_detect(x[4], pos) == TRUE){
+              return(x[4])
+              }
+          }))
+      }
 
   # output
   res_c_list <- list()
@@ -107,3 +112,4 @@ jum_c <- function (input,
   }
   return(res_c_list)
 }
+
