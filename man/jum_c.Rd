@@ -4,7 +4,8 @@
 \alias{jum_c}
 \title{Simple Morphological Analysis}
 \usage{
-jum_c(input, mypref = 0, pos = NULL, redirect = FALSE, server = FALSE)
+jum_c(input, mypref = 0, pos = NULL, redirect = FALSE,
+  server = FALSE)
 }
 \arguments{
 \item{input}{input text}
