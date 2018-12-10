@@ -1,3 +1,6 @@
+# rjumanpp 0.1.2
+* add some messages when loading pacakge
+
 # rjumanpp 0.1.0
 * minor release
 
