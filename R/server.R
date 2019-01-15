@@ -46,6 +46,9 @@ jum_start_server <- function(host.name = NULL, port = NULL) {
                           "&")
   system(server_command)
 
+  # Register Server Information ---------------------------------------------
+  .options$server_host <- host
+  .options$server_port <- port
 }
 
 ##' Close JUMAN++ server.

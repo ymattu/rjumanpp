@@ -82,29 +82,35 @@ jum_text <- function (input, server = FALSE) {
 
   # input command
   if(server == TRUE) {
-    pid <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $2}'",
-                  intern = TRUE)
-    if(length(pid) == 0) {
-      stop("JUMAN++ server is not running.")
+    if ("server_host" %in% ls(.options) &&
+        "server_port" %in% ls(.options)) {
+      host <- .options$server_host
+      port <- .options$server_post
+    } else {
+      pid <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $2}'",
+                    intern = TRUE)
+      if(length(pid) == 0) {
+        stop("JUMAN++ server is not running.")
+      }
+
+      hostn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $15}'",
+                      intern = TRUE)
+      if(identical(hostn, "")) {
+        host <- ""
+      } else {
+        host <- paste("--host", hostn)
+      }
+
+      portn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $18}'",
+                      intern = TRUE)
+      if(identical(portn, "")) {
+        port <- ""
+      } else {
+        port <- paste("--host", portn)
+      }
     }
 
     rb_client <- system.file("ruby/client.rb", package = "rjumanpp")
-
-    hostn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $15}'",
-                   intern = TRUE)
-    if(identical(hostn, "")) {
-      host <- ""
-    } else {
-      host <- paste("--host", hostn)
-    }
-
-    portn <- system("ps -aefw | grep 'ruby/server.rb' | grep -v ' grep ' | awk '{print $18}'",
-                    intern = TRUE)
-    if(identical(portn, "")) {
-      port <- ""
-    } else {
-      port <- paste("--host", portn)
-    }
 
     command <- paste("echo", input, "| ruby", rb_client, host, port)
   } else {
