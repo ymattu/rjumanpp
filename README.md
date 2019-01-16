@@ -4,7 +4,7 @@ R interface for JUMAN++
 
 This package is made for mainly Japanese.
 
-表記ゆれや話し言葉に強いと言われる日本語形態素解析器 **JUMAN++** を R から操作するためのパッケージです。
+表記ゆれや話し言葉に強いと言われる日本語形態素解析器 [**JUMAN++**](http://nlp.ist.i.kyoto-u.ac.jp/index.php?JUMAN++) を R から操作するためのパッケージです。
 
 詳細は[こちら](https://ymattu.github.io/rjumanpp/articles/rjumanpp.html)
 

@@ -1,3 +1,6 @@
+# rjumanpp 0.1.3
+* accelerate server mode
+
 # rjumanpp 0.1.2
 * add some messages when loading pacakge
 
