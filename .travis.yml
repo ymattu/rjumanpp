@@ -1,11 +1,25 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: required
+sudo: false
 cache: packages
 
 env:
   JVER=1.02
+
+addons:
+  apt:
+    packages:
+    - build-essential
+    - g++
+    - python-dev
+    - autotools-dev
+    - libicu-dev build
+    - essential
+    - libbz2-dev
+    - gcc-4.9
+    - google-perftools
+    - libgoogle-perftools-dev
 
 before_install:
   - make -f Makefile.travis before_install
