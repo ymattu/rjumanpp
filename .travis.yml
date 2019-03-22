@@ -19,6 +19,9 @@ matrix:
             - boost1.67
             - cmake
             - cmake-data
+            - libboost-dev
+            - google-perftools
+            - libgoogle-perftools-dev
 
 install:
   - make -f Makefile.travis install
