@@ -1,8 +1,3 @@
-before_install:
-	sudo apt-get update
-	sudo apt-get install build-essential g++ python-dev autotools-dev libicu-dev build-essential libbz2-dev
-	sudo apt-get install gcc-4.9 google-perftools libgoogle-perftools-dev libboost-all-dev
-
 install:
 	# JUMAN++
 	mkdir Downloads
