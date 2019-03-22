@@ -6,7 +6,7 @@ cache: packages
 
 matrix:
   include:
-    - env: COMPILER=g++-6 BUILD=Debug STANDARD=14
+    - env: COMPILER=g++-6 BUILD=Debug STANDARD=14 JVER=1.02
       compiler: gcc
       addons:
         apt:
@@ -19,9 +19,6 @@ matrix:
             - boost1.67
             - cmake
             - cmake-data
-
-env:
-  JVER=1.02
 
 install:
   - make -f Makefile.travis install
