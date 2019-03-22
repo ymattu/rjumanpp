@@ -6,7 +6,7 @@ before_install:
 	wget https://cmake.org/files/v3.4/cmake-3.4.0-rc3.tar.gz
 	tar xvf cmake-3.4.0-rc3.tar.gz
 	cd cmake-3.4.0-rc3/
-	./configure
+	configure
 	make
 	sudo make install
 	export PATH="/usr/local/bin:$PATH"
