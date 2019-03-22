@@ -8,5 +8,4 @@ install:
 	mkdir bld
 	cd bld
 	.cmake ..
-	make
 	sudo make install
