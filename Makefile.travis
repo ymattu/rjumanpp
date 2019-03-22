@@ -2,7 +2,7 @@ install:
 	# JUMAN++
 	mkdir Downloads
 	cd Downloads
-	wget http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-$(JVER).tar.xz
+	wget http://nlp.ist.i.kyoto-u.ac.jp/DLcounter/lime.cgi?down=http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-$(JVER).tar.xz
 	tar xJvf jumanpp-$(JVER).tar.xz
 	cd jumanpp-$(JVER)
 	mkdir bld
