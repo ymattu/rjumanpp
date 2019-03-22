@@ -7,5 +7,5 @@ install:
 	cd jumanpp-$(JVER)
 	mkdir bld
 	cd bld
-	cmake ..
+	./configure
 	sudo make install
