@@ -4,6 +4,18 @@ language: R
 sudo: required
 cache: packages
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-precise-3.7
+      - george-edison55-precise-backports
+    packages:
+      - clang-3.7
+      - cmake
+      - cmake-data
+      - libgtest-dev
+
 env:
   JVER=1.02
 

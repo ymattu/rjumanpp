@@ -3,14 +3,6 @@ before_install:
 	sudo apt-get install build-essential g++ python-dev autotools-dev libicu-dev build-essential libbz2-dev
 	sudo apt-get install gcc-4.9 google-perftools libgoogle-perftools-dev libboost-all-dev
 
-	wget https://cmake.org/files/v3.4/cmake-3.4.0-rc3.tar.gz
-	tar xvf cmake-3.4.0-rc3.tar.gz
-	cd cmake-3.4.0-rc3/
-	configure
-	make
-	sudo make install
-	export PATH="/usr/local/bin:$PATH"
-
 install:
 	# JUMAN++
 	mkdir Downloads
