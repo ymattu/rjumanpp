@@ -1,11 +1,9 @@
 install:
 	# JUMAN++
-	mkdir Downloads
-	cd Downloads
-	wget http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-$(JVER).tar.xz
-	tar xJvf jumanpp-$(JVER).tar.xz
-	cd jumanpp-$(JVER)
-	ls
-	./configure
-	make
-	make install
+	mkdir tmp &&\
+	wget http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-$(JVER).tar.xz -O /tmp/jumanpp.tar.xz &&\
+	tar xJvf /tmp/jumanpp.tar.xz -C /tmp &&\
+	cd /tmp/jumanpp-$(JVER) &&\
+	./configure --prefix=/usr/local/ && make && make install &&\
+  rm -rf /tmp/* &&\
+  rm -rf /var/cache/apk/* &&\
