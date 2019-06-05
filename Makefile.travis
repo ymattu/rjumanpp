@@ -5,7 +5,7 @@ install:
   tar xzvf /download/boost_1_65_1.tar.gz -C /download &&\
   cd /download/boost_1_65_1 &&\
   ./bootstrap.sh &&\
-  ./b2 install -j2 &&\
+  ./b2 install -j2
   # JUMAN++
 	wget http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-$(JVER).tar.xz -O /tmp/jumanpp.tar.xz &&\
 	tar xJvf /download/jumanpp.tar.xz -C /download &&\
