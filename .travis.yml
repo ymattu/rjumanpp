@@ -4,10 +4,24 @@ language: R
 sudo: required
 cache: packages
 
-env:
-  JVER=1.02
+matrix:
+  include:
+    - env: COMPILER=g++-6 BUILD=Debug STANDARD=14 JVER=1.02
+      compiler: gcc
+      addons:
+        apt:
+          update: true
+          sources:
+            - sourceline: 'ppa:mhier/libboost-latest'
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+            - boost1.67
+            - cmake
+            - cmake-data
+            - libboost-dev
+            - google-perftools
+            - libgoogle-perftools-dev
 
-before_install:
-  - make -f Makefile.travis before_install
 install:
   - make -f Makefile.travis install
