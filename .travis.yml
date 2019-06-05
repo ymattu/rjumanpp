@@ -12,10 +12,10 @@ matrix:
         apt:
           update: true
           packages:
-            - libboost-dev
+            - libboost-all-dev
             - google-perftools
             - libgoogle-perftools-dev
-            - gcc
+            - build-essential
             - g++
             - make
             - wget
