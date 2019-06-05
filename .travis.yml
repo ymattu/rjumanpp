@@ -6,7 +6,7 @@ cache: packages
 
 matrix:
   include:
-    - env: COMPILER=g++-6 BUILD=Debug STANDARD=14 JVER=1.02
+    - env: JVER=1.02
       compiler: gcc
       addons:
         apt:
