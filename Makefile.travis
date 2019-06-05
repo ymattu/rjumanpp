@@ -1,9 +1,9 @@
 install:
   # Boost
 	mkdir download &&\
-	wget https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz -O /download/boost.tar.gz &&\
-  tar xzvf /download/boost.tar.gz -C /download &&\
-  cd /download/boost &&\
+	wget https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz &&\
+  tar xzvf /download/boost_1_70_0.tar.gz -C /download &&\
+  cd /download/boost_1_70_0 &&\
   ./bootstrap.sh &&\
   ./b2 install -j2
   # JUMAN++
