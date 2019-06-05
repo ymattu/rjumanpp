@@ -5,6 +5,7 @@ install:
 	wget http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-$(JVER).tar.xz
 	tar xJvf jumanpp-$(JVER).tar.xz
 	cd jumanpp-$(JVER)
+	ls
 	./configure
 	make
 	make install
