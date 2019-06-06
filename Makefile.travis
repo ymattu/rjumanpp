@@ -1,12 +1,12 @@
 install:
   # Boost
-	sudo mkdir /download &&\
 	wget https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz &&\
-  tar xzvf boost_1_70_0.tar.gz -C /download &&\
-  cd /download/boost_1_70_0 &&\
+  tar xzvf boost_1_70_0.tar.gz &&\
+  cd boost_1_70_0 &&\
   ./bootstrap.sh &&\
   ./b2 install -j2
   # JUMAN++
+  sudo mkdir /download &&\
 	wget http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-$(JVER).tar.xz -O /download/jumanpp.tar.xz &&\
 	tar xJvf /download/jumanpp.tar.xz -C /download &&\
 	cd /download/jumanpp-$(JVER) &&\
